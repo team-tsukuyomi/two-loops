@@ -1,11 +1,12 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {},
   },
   variants: {
-    extend: {},
+    scale: ["active", "hover", "focus", "group-hover"],
+    borderRadius: ["hover", "focus"]
   },
   plugins: [],
-}
+};
