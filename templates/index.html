@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../tailwind.css"/>
-    <link rel="stylesheet" href="/tailwind"/>
+    <link rel="stylesheet" href="../tailwind.css" />
+    <link rel="stylesheet" href="/tailwind" />
     <title>Document</title>
     <style>
       .firefly {
@@ -21,9 +21,9 @@
         stroke-dashoffset: 232;
         animation: dash 5s ease-out forwards, dropshadow 3s linear forwards 5s;
       }
-      .welc{
-          animation: appear 2s linear forwards 5s;
-          transform: scale(0);
+      .welc {
+        animation: appear 2s linear forwards 5s;
+        transform: scale(0);
       }
 
       @keyframes dash {
@@ -46,9 +46,9 @@
         }
       }
       @keyframes appear {
-          to {
-              transform: scale(1);
-          }
+        to {
+          transform: scale(1);
+        }
       }
     </style>
     <script>
@@ -85,8 +85,9 @@
     </script>
   </head>
   <body style="background-color: black">
+    <!--
     <svg
-      style="width: 100vw; height: 100vh;"
+      style="width: 100vw; height: 80vh"
       viewBox="0 0 187.3 93.7"
       preserveAspectRatio="xMidYMid meet"
     >
@@ -114,9 +115,15 @@
         d="                             M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1                               c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z"
       />
     </svg>
-    <div class="welc w-screen text-9xl">Welcome</div>
+  -->
+    <div class=" flex items-center welc w-screen h-screen text-7xl justify-center">
+      <div class="text-center">Welcome</div>
+    </div>
     {% for i in range(16) %}
     <div class="firefly" id="firefly{{i}}"></div>
     {%endfor%}
+    <div class="w-screen bg-gray-600 h-screen text-center justify-center">
+      Here's gnna be the main website
+    </div>
   </body>
 </html>
