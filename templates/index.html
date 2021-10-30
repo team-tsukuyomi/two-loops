@@ -1,3 +1,4 @@
+{% import "flashcard.html" as flashcard %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../tailwind.css" />
-    <link rel="stylesheet" href="/tailwind" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <link rel="stylesheet" href="/css/flashcard.css" />
+    <script src="/js/flashcards.js"></script>
     <title>Document</title>
     <style>
       .firefly {
@@ -19,13 +22,16 @@
       .path {
         stroke-dasharray: 232;
         stroke-dashoffset: 232;
-        animation: dash 5s ease-out forwards, dropshadow 3s linear forwards 5s;
+        animation: dash 5s ease-out forwards, dropshadow 3s linear forwards;
       }
       .welc {
         animation: appear 2s linear forwards 5s;
         transform: scale(0);
       }
-
+      .welc-page{
+        background-image: url("/images/flash_front.png");
+        background-size: cover;
+      }
       @keyframes dash {
         to {
           stroke-dashoffset: 0;
@@ -116,14 +122,16 @@
       />
     </svg>
   -->
-    <div class=" flex items-center welc w-screen h-screen text-7xl justify-center">
-      <div class="text-center">Welcome</div>
+    <div class=" flex items-center w-screen h-screen text-7xl justify-center welc-page">
+      <div class="text-center welc">Welcome</div>
     </div>
     {% for i in range(16) %}
     <div class="firefly" id="firefly{{i}}"></div>
     {%endfor%}
-    <div class="w-screen bg-gray-600 h-screen text-center justify-center">
-      Here's gnna be the main website
+    <div class="w-screen bg-gray-600 min-h-screen flex-initial">
+      {%for el in cards %}
+      {{flashcard.card(el[0], el[1], el[2])}}
+      {%endfor%}
     </div>
   </body>
 </html>

@@ -52,7 +52,7 @@
   .card__face--front {
     
     transform:rotateY(180deg)  ;
-    background-image: url("images/flash_front.png");
+    background-image: url("/images/flash_front.png");
     
     background-size: cover;
     

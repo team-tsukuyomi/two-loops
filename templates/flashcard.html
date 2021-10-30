@@ -1,37 +1,23 @@
-{% macro flashcard()%}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Card</title>
-    <link rel="stylesheet" href="flashcard.css" />
-  </head>
-  <body>
-    <div class="card">
-      <div class="card__inner">
-        <div class="card__face card__face--front">
-          <h2>Card Front</h2>
+<link rel="stylesheet" href="/css/tailwind.css" />
+{% macro card(title, info, main)%}
+<div class="card w-96 h-96">
+  <div class="card__inner">
+    <div class="card__face card__face--front">
+      <p>{{main}}</p>
+    </div>
+    <div class="card__face card__face--back">
+      <div class="card__content">
+        <div class="card__header">
+          <img src="/images/flash_front.png" alt="" class="propic" />
+          <h2>{{title}}</h2>
         </div>
-        <div class="card__face card__face--back">
-          <div class="card__content">
-            <div class="card__header">
-              <img src="images/flash_dummypic.jpg" alt="" class="propic" />
-              <h2>A trigger</h2>
-            </div>
-            <div class="card__body">
-              <h3>des about trigger</h3>
-              <p>
-                More discription about the <strong>trigger</strong> sit amet, consectetur
-                <strong>adipiscing</strong> elit. Sed id erat a magna lobortis
-                dictum. Nunc est arcu, <strong>lacinia</strong> quis sapien
-                placerat, <strong>laoreet</strong> tincidunt nulla.
-              </p>
-            </div>
-          </div>
+        <div class="card__body">
+          <p>
+            {{info}}
+          </p>
         </div>
       </div>
     </div>
-    <script src="flashcards.js"></script>
-  </body>
-</html>
+  </div>
+</div>
+{%- endmacro %}
