@@ -1,12 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../tailwind.css"/>
+    <link rel="stylesheet" href="/tailwind"/>
     <title>Document</title>
-</head>
-<body>
-    hello this is change
-</body>
+    <style>
+      .firefly {
+        position: fixed;
+        z-index: 3000;
+        width: 4px;
+        height: 4px;
+        background-color: yellow;
+        box-shadow: 1px 1px solid yellow;
+      }
+      .path {
+        stroke-dasharray: 232;
+        stroke-dashoffset: 232;
+        animation: dash 5s ease-out forwards, dropshadow 3s linear forwards 5s;
+      }
+      .welc{
+          animation: appear 2s linear forwards 5s;
+          transform: scale(0);
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes dropshadow {
+        0% {
+          filter: drop-shadow(0px 0px 0px rgba(0, 0, 255, 0));
+        }
+        50% {
+          filter: drop-shadow(1px 1px 10px rgba(0, 0, 255, 1));
+        }
+        75% {
+          filter: drop-shadow(-1px -1px 5px rgba(0, 0, 255, 0.75));
+        }
+        100% {
+          filter: drop-shadow(0px 0px 5px rgba(0, 0, 255, 0.5));
+        }
+      }
+      @keyframes appear {
+          to {
+              transform: scale(1);
+          }
+      }
+    </style>
+    <script>
+      let fireflies = [];
+      let pos = [];
+      let target = [];
+      for (let i = 0; i < 16; i++) {
+        pos.push([Math.random() * 100, Math.random() * 100]);
+        target.push([Math.random() * 100, Math.random() * 100]);
+      }
+      const tolerance = 0.1;
+      const speed = 0.45;
+      window.onload = () => {
+        for (let i = 0; i < 16; i++) {
+          fireflies.push(document.getElementById("firefly" + i));
+        }
+        setInterval(() => {
+          for (let i = 0; i < 32; i++) {
+            if (
+              Math.abs(pos[i][0] - target[i][0]) <= tolerance &&
+              Math.abs(pos[i][1] - target[i][1]) <= tolerance
+            ) {
+              target[i][0] = Math.random() * 100;
+              target[i][1] = Math.random() * 100;
+            } else {
+              pos[i][0] -= speed * 0.01 * (pos[i][0] - target[i][0]);
+              pos[i][1] -= speed * 0.01 * (pos[i][1] - target[i][1]);
+              fireflies[i].style.left = pos[i][0] + "vw";
+              fireflies[i].style.top = pos[i][1] + "vh";
+            }
+          }
+        }, 10);
+      };
+    </script>
+  </head>
+  <body style="background-color: black">
+    <svg
+      style="width: 100vw; height: 100vh;"
+      viewBox="0 0 187.3 93.7"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <path
+        class="path"
+        stroke="#1d4ed8"
+        id="outline"
+        fill="none"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        d="M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1   c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z"
+      />
+      <path
+        class="path"
+        id="outline-bg"
+        stroke="#1d4ed8"
+        opacity="0.05"
+        fill="none"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        d="                             M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1                               c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z"
+      />
+    </svg>
+    <div class="welc w-screen text-9xl">Welcome</div>
+    {% for i in range(16) %}
+    <div class="firefly" id="firefly{{i}}"></div>
+    {%endfor%}
+  </body>
 </html>
